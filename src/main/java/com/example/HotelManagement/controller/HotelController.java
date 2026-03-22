@@ -5,6 +5,7 @@ import com.example.HotelManagement.DTOs.UpdateHotelAddressDTO;
 import com.example.HotelManagement.entities.Hotel;
 import com.example.HotelManagement.services.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,17 +18,19 @@ public class HotelController {
     HotelService hotelService;
 
     @PostMapping("/createhotel")
-    public Hotel createHotel(@RequestBody HotelDTO hotelDTO){
+    public ResponseEntity<Hotel> createHotel(@RequestBody HotelDTO hotelDTO){
        return hotelService.saveHotel(hotelDTO);
     }
 
     @GetMapping("/getallhotels")
     public List<Hotel> getAllHotels(){
-       return hotelService.getAllHotels();
+
+        return hotelService.getAllHotels();
     }
 
     @GetMapping("/gethotel/{id}")
-    public Hotel getHotelById(@PathVariable Long id){
+    public ResponseEntity<Hotel> getHotelById(@PathVariable Long id){
+
         return hotelService.getHotelById(id);
     }
 
